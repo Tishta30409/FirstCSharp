@@ -38,12 +38,12 @@ namespace FirstCSharp.Persistent.Repository
                 {
                     var result = cn.QueryFirstOrDefault<Member>(
                         "pro_memberAdd",
+                        //參數名稱為PROCEDURE中宣告的變數名稱
                         new
                         {
-                            f_id = member.f_id,
-                            f_name = member.f_name,
-                            f_price = member.f_price,
-                            f_descript = member.f_descript
+                            @userName = member.f_name,
+                            @price = member.f_price,
+                            @descript = member.f_descript
                         },
                         commandType: CommandType.StoredProcedure) ;
 
@@ -86,7 +86,7 @@ namespace FirstCSharp.Persistent.Repository
                         "pro_memberAddBatch",
                         new
                         {
-                            type_score = udt.AsTableValuedParameter("type_score")
+                            type_member = udt.AsTableValuedParameter("type_member")
                         },
                         commandType: CommandType.StoredProcedure);
 
@@ -135,13 +135,13 @@ namespace FirstCSharp.Persistent.Repository
                 using (var cn = new SqlConnection(this.connectionString))
                 {
                     var result = cn.QueryFirstOrDefault<Member>(
-                        "pro_sujectUpdate",
+                        "pro_memberUpdate",
                         new
                         {
-                            f_id = member.f_id,
-                            f_name = member.f_name,
-                            f_price = member.f_price,
-                            f_descript = member.f_descript
+                            @id = member.f_id,
+                            @userName = member.f_name,
+                            @price = member.f_price,
+                            @descript = member.f_descript
                         },
                         commandType: CommandType.StoredProcedure);
 
@@ -169,7 +169,7 @@ namespace FirstCSharp.Persistent.Repository
                         "pro_memberDelete",
                         new
                         {
-                            f_id = id
+                            @id = id
                         },
                         commandType: CommandType.StoredProcedure);
 

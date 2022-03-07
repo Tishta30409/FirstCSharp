@@ -39,6 +39,9 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -88,6 +91,10 @@
     <ProjectReference Include="..\FirstCSharp.Domain\FirstCSharp.Domain.csproj">
       <Project>{9C296C53-A719-4E8A-AD94-7B9F25FA038A}</Project>
       <Name>FirstCSharp.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FirstCSharp.Persistent\FirstCSharp.Persistent.csproj">
+      <Project>{e48ad99d-4029-4f3a-a97b-d7087f85d565}</Project>
+      <Name>FirstCSharp.Persistent</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

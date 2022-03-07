@@ -44,8 +44,6 @@ namespace FirstCSharp
                 {
                     //console.Clear();
 
-
-                    // 處理第一層業務
                     if (legalTypesFormat.Any(p => p == cmd) &&
                         processSets.TryGetValue((MemberProcessType)Convert.ToInt32(cmd), out IMemberProcess process) &&
                         !process.Execute())

@@ -54,9 +54,9 @@ namespace FirstCSharp.Applibs
 
             // sql ioc
             builder.RegisterAssemblyTypes(Assembly.Load("FirstCSharp.Persistent"), Assembly.Load("FirstCSharp.Domain"))
-                .WithParameter("connectionString", ConfigHelper.ConnectionString)
+                .WithParameter("connectionString", ConfigHelper.ConnectionString)//建構子變數
                 .Where(t => t.Namespace == "FirstCSharp.Persistent.Repository" || t.Namespace == "FirstCSharp.Domain.Repository")
-                .As(t => t.GetInterfaces().FirstOrDefault(i => i.Name == $"I{t.Name}"))
+                .As(t => t.GetInterfaces().FirstOrDefault(i => i.Name == $"I{t.Name}"))//轉映射
                 .PropertiesAutowired(PropertyWiringOptions.AllowCircularDependencies)
                 .SingleInstance();
 
