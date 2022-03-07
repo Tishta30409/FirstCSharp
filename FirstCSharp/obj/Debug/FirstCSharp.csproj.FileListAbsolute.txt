@@ -90,3 +90,5 @@ D:\Git\FirstCSharp\FirstCSharp\bin\Debug\FirstCSharp.Persistent.pdb
 D:\Git\FirstCSharp\FirstCSharp\bin\Debug\FirstCSharp.Persistent.dll.config
 D:\Git\FirstCSharp\FirstCSharp\bin\Debug\FirstCSharp.Persistent.exe.config
 D:\Git\FirstCSharp\FirstCSharp\bin\Debug\Dapper.xml
+D:\Git\FirstCSharp\FirstCSharp\bin\Debug\Newtonsoft.Json.dll
+D:\Git\FirstCSharp\FirstCSharp\bin\Debug\Newtonsoft.Json.xml
