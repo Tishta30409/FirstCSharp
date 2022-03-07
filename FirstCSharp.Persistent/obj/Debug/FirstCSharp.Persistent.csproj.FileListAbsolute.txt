@@ -1,0 +1,15 @@
+D:\FirstCSharp\FirstCSharp.Persistent\bin\Debug\FirstCSharp.Persistent.exe.config
+D:\FirstCSharp\FirstCSharp.Persistent\bin\Debug\FirstCSharp.Persistent.exe
+D:\FirstCSharp\FirstCSharp.Persistent\bin\Debug\FirstCSharp.Persistent.pdb
+D:\FirstCSharp\FirstCSharp.Persistent\bin\Debug\Dapper.dll
+D:\FirstCSharp\FirstCSharp.Persistent\bin\Debug\FirstCSharp.Domain.exe
+D:\FirstCSharp\FirstCSharp.Persistent\bin\Debug\System.Data.SqlClient.dll
+D:\FirstCSharp\FirstCSharp.Persistent\bin\Debug\FirstCSharp.Domain.pdb
+D:\FirstCSharp\FirstCSharp.Persistent\bin\Debug\FirstCSharp.Domain.exe.config
+D:\FirstCSharp\FirstCSharp.Persistent\bin\Debug\Dapper.xml
+D:\FirstCSharp\FirstCSharp.Persistent\bin\Debug\System.Data.SqlClient.xml
+D:\FirstCSharp\FirstCSharp.Persistent\obj\Debug\FirstCSharp.Persistent.csprojAssemblyReference.cache
+D:\FirstCSharp\FirstCSharp.Persistent\obj\Debug\FirstCSharp.Persistent.csproj.CoreCompileInputs.cache
+D:\FirstCSharp\FirstCSharp.Persistent\obj\Debug\FirstCSharp.Persistent.csproj.CopyComplete
+D:\FirstCSharp\FirstCSharp.Persistent\obj\Debug\FirstCSharp.Persistent.exe
+D:\FirstCSharp\FirstCSharp.Persistent\obj\Debug\FirstCSharp.Persistent.pdb
