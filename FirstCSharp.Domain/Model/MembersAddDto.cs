@@ -9,5 +9,6 @@ namespace FirstCSharp.Domain.Model
     public class MembersAddDto
     {
         public IEnumerable<Member> Members { get; set; }
+
     }
 }

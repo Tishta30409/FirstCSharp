@@ -9,12 +9,12 @@ using System.Linq;
 
 namespace FirstCSharp.Signalr.Server.Action
 {
-    public class BatchAddMemberActionHandler: IActionHandler
+    public class AddMembersActionHandler : IActionHandler
     {
 
         private IMemberRepository repo;
 
-        public BatchAddMemberActionHandler(IMemberRepository repo)
+        public AddMembersActionHandler(IMemberRepository repo)
         {
             this.repo = repo;
         }

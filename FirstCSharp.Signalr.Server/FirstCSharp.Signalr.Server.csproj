@@ -108,7 +108,7 @@
     <Compile Include="ActionHandler\AddMemberActionHandler.cs" />
     <Compile Include="ActionHandler\AddMembersActionHandler.cs" />
     <Compile Include="ActionHandler\DeleteMemberActionHandler.cs" />
-    <Compile Include="ActionHandler\UpdateMembersActionHandle.cs" />
+    <Compile Include="ActionHandler\UpdateMemberActionHandler.cs" />
     <Compile Include="Model\IActionHandler.cs" />
     <Compile Include="ActionHandler\QueryMembersActionHandler.cs" />
     <Compile Include="Applibs\AutofacConfig.cs" />

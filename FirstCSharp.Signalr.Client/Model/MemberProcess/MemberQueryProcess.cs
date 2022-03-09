@@ -1,4 +1,5 @@
-﻿using FirstCSharp.Domain.Model;
+﻿using FirstCSharp.Domain.Action;
+using FirstCSharp.Domain.Model;
 using FirstCSharp.Domain.Model.ConsoleWrapper;
 using FirstCSharp.Domain.Model.MemberProcess;
 using FirstCSharp.Signalr.Client.Hubs;
@@ -39,7 +40,7 @@ namespace FirstCSharp.Signalr.Client.Model.MemberProcess
                     throw new Exception($"{this.GetType()} queryResult is Empty");
                 }
 
-                var members = JsonConvert.DeserializeObject<MembersAddDto>(queryResult.Message).Members;
+                var members = JsonConvert.DeserializeObject<MemberAction>(queryResult.Message).Members;
 
                 foreach (var member in members)
                 {

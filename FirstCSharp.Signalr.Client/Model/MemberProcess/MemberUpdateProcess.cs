@@ -1,4 +1,5 @@
-﻿using FirstCSharp.Domain.Model;
+﻿using FirstCSharp.Domain.Action;
+using FirstCSharp.Domain.Model;
 using FirstCSharp.Domain.Model.ConsoleWrapper;
 using FirstCSharp.Domain.Model.MemberProcess;
 using FirstCSharp.Signalr.Client.Hubs;
@@ -25,7 +26,7 @@ namespace FirstCSharp.Signalr.Client.Model.MemberProcess
             try
             {
                 this.console.Clear();
-                console.Write("Execute  MemberUpdateProcess");
+                console.Write("Execute  MemberUpdateProcess\n");
 
                 var memberID = int.MinValue;
 
@@ -71,7 +72,9 @@ namespace FirstCSharp.Signalr.Client.Model.MemberProcess
                     throw new Exception($"{this.GetType()} updateResult is Empty");
                 }
 
-                var member = JsonConvert.DeserializeObject<MembersAddDto>(updateResult.Message).Members;
+                this.console.WriteLine("SendAction AddMemberAction");
+
+                var member = JsonConvert.DeserializeObject<MemberAction>(updateResult.Message).Member;
 
                 this.console.Write($"更新完成 {JsonConvert.SerializeObject(member)}");
 
