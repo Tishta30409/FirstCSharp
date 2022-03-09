@@ -1,5 +1,0 @@
-D:\FirstCSharp\FirstCSharp.DataBase\bin\Debug\FirstCSharp.DataBase.dacpac
-D:\FirstCSharp\FirstCSharp.DataBase\bin\Debug\FirstCSharp.DataBase.dll
-D:\FirstCSharp\FirstCSharp.DataBase\bin\Debug\FirstCSharp.DataBase.pdb
-D:\FirstCSharp\FirstCSharp.DataBase\obj\Debug\FirstCSharp.DataBase.dll
-D:\FirstCSharp\FirstCSharp.DataBase\obj\Debug\FirstCSharp.DataBase.pdb
