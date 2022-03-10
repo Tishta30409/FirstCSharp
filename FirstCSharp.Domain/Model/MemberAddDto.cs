@@ -9,6 +9,8 @@ namespace FirstCSharp.Domain.Model
 {
     public class MemberAddDto
     {
+        public int MemberID { get; set; }
+
         public string MemberName { get; set; }
 
         public decimal MemberPrice { get; set; }

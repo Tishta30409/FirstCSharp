@@ -58,28 +58,34 @@ namespace FirstCSharp.Signalr.Client.Model.MemberProcess
                 string memberDes = "";
                 memberDes = this.console.ReadLine();
 
-
-                var updateResult = this.hubClient.GetAction(new UpdateMemberAction()
+                this.hubClient.SendAction(new UpdateMemberAction()
                 {
                     MemberID = memberID,
                     MemberName = memberName,
                     MemberPrice = memberPrice,
                     MemberDescript = memberDes
-                }).Result;
+                });
 
-                if(updateResult == null)
-                {
-                    throw new Exception($"{this.GetType()} updateResult is Empty");
-                }
+                //var updateResult = this.hubClient.GetAction(new UpdateMemberAction()
+                //{
+                //    MemberID = memberID,
+                //    MemberName = memberName,
+                //    MemberPrice = memberPrice,
+                //    MemberDescript = memberDes
+                //}).Result;
 
-                this.console.WriteLine("SendAction AddMemberAction");
+                //if(updateResult == null)
+                //{
+                //    throw new Exception($"{this.GetType()} updateResult is Empty");
+                //}
 
-                var member = JsonConvert.DeserializeObject<MemberAction>(updateResult.Message).Member;
+                //this.console.WriteLine("SendAction AddMemberAction");
 
-                this.console.Write($"更新完成 {JsonConvert.SerializeObject(member)}");
+                //var member = JsonConvert.DeserializeObject<MemberAction>(updateResult.Message).Member;
 
-                console.Write("Execute  MemberAddProcess End\n");
-                console.ReadLine();
+                //this.console.Write($"更新完成 {JsonConvert.SerializeObject(member)}");
+
+                console.Read();
                 return true;
             }
             catch (Exception ex)

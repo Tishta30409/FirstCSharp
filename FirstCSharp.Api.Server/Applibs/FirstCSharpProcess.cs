@@ -8,11 +8,11 @@ namespace FirstCSharp.Api.Server.Applibs
 {
     internal static class FirstCSharpProcess
     {
-        private static ILogger logger = LogManager.GetLogger("ReportCard.Api.Server");
+        private static ILogger logger = LogManager.GetLogger("FirstCSharp.Api.Server");
 
         public static void ProcessStart()
         {
-            logger.Info("ReportCard.Api.Server Application_Start");
+            logger.Info("FirstCSharp.Api.Server Application_Start");
             var container = AutofacConfig.Container;
 
             Task.Run(() =>
@@ -27,12 +27,12 @@ namespace FirstCSharp.Api.Server.Applibs
                 }
             });
 
-            logger.Info("ReportCard.Api.Server Started");
+            logger.Info("FirstCSharp.Api.Server Started");
         }
 
         public static void ProcessStop()
         {
-            logger.Info("ReportCard.Api.Server Ended");
+            logger.Info("FirstCSharp.Api.Server Ended");
         }
     }
 }

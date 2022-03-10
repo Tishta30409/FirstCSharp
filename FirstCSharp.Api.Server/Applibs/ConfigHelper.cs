@@ -8,9 +8,9 @@ namespace FirstCSharp.Api.Server.Applibs
         public static string ServiceUrl
         {
             get
-                => $"http://*:8085";
+                => $"http://localhost:8085";
         }
 
-        public static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["ReportCard"].ConnectionString;
+        public static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["FirstCSharp"].ConnectionString;
     }
 }

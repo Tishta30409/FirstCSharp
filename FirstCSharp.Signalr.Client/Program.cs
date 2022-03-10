@@ -46,18 +46,27 @@ namespace FirstCSharp.Signalr.Client
 
                 while (cmd.ToLower() != "exit")
                 {
+
                     console.Clear();
 
                     if (legalTypesFormat.Any(p => p == cmd) &&
                         processSets.TryGetValue((MemberProcessType)Convert.ToInt32(cmd), out IMemberProcess process) &&
                         !process.Execute())
                     {
-                        console.WriteLine("Finished!");
+                        if (!hubClient.GetProcessState())
+                        {
+                            console.WriteLine("Finished!");
+                        }
+                        else
+                        {
+                            console.WriteLine("Action未完成.. 請稍後");
+                        }
                     }
 
                     console.WriteLine(string.Join("\r\n", legalTypesDisplay));
 
                     cmd = console.ReadLine();
+
                 }
 
             }

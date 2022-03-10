@@ -1,10 +1,9 @@
-﻿using Autofac.Integration.WebApi;
+﻿
+using Autofac.Integration.WebApi;
 using FirstCSharp.Api.Server.Applibs;
 using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 using Owin;
-using System;
-using System.Threading.Tasks;
 using System.Web.Http;
 
 [assembly: OwinStartup(typeof(FirstCSharp.Api.Server.Startup))]

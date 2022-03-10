@@ -50,5 +50,9 @@ namespace FirstCSharp.Signalr.Client.Hubs
         /// HubClient啟動
         /// </summary>
         public abstract Task StartAsync();
+
+        public abstract bool GetProcessState();
+
+        public abstract void UnlockProcess();
     }
 }

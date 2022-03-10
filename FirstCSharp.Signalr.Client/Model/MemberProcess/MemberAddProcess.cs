@@ -5,6 +5,7 @@ using FirstCSharp.Signalr.Client.Hubs;
 using FirstCSharp.Signalr.Server.Action;
 using Newtonsoft.Json;
 using System;
+using System.Threading;
 
 namespace FirstCSharp.Signalr.Client.Model.MemberProcess
 {
@@ -26,61 +27,90 @@ namespace FirstCSharp.Signalr.Client.Model.MemberProcess
             {
                 this.console.Clear();
 
-                console.Write("Execute  MemberAddProcess\n");
+                //console.Write("Execute  MemberAddProcess\n");
 
-                var memberName = string.Empty;
+                //var memberName = string.Empty;
 
-                while (string.IsNullOrEmpty(memberName))
-                {
-                    this.console.Clear();
-                    this.console.Write("會員名稱:");
-                    memberName = this.console.ReadLine();
-                }
-
-                decimal memberPrice = -1;
-
-                console.Write("會員點數:");
-                while (!decimal.TryParse(this.console.ReadLine(), out memberPrice))
-                {
-                    console.Write("會員點數:");
-                }
-
-
-                console.Write("會員描述:");
-                string memberDes = "";
-                memberDes = this.console.ReadLine();
-
-
-                //this.client.SendAction(new AddMemberAction()
+                //while (string.IsNullOrEmpty(memberName))
                 //{
-                //    MemberID = -1,
-                //    MemberName = memberName,
-                //    MemberPrice = memberPrice,
-                //    MemberDescript = memberDes
-                //});
+                //    this.console.Clear();
+                //    this.console.Write("會員名稱:");
+                //    memberName = this.console.ReadLine();
+                //}
 
-                var result  = this.client.GetAction(new AddMemberAction()
+                //decimal memberPrice = -1;
+
+                //console.Write("會員點數:");
+                //while (!decimal.TryParse(this.console.ReadLine(), out memberPrice))
+                //{
+                //    console.Write("會員點數:");
+                //}
+
+
+                //console.Write("會員描述:");
+                //string memberDes = "";
+                //memberDes = this.console.ReadLine();
+
+                var memberName = "testN";
+                decimal memberPrice = 10000;
+                string memberDes = "desTest";
+                console.WriteLine($"{memberName} {memberPrice} {memberDes}");
+
+
+                this.client.SendAction(new AddMemberAction()
                 {
                     MemberID = -1,
                     MemberName = memberName,
                     MemberPrice = memberPrice,
                     MemberDescript = memberDes
-                }).Result;
+                });
 
-                if (result == null)
+                System.Timers.Timer timer = new System.Timers.Timer();
+                timer.Enabled = true; 
+
+                var second = 0;
+                while (!SpinWait.SpinUntil(() => false, 1000) && this.client.GetProcessState() && second <5)
                 {
-                    throw new Exception($"{this.GetType().Name} MemberAddProcess Empty");
+                    if (!this.client.GetProcessState())
+                    {
+                        break;
+                    }
+                    console.WriteLine("等待執行結果...");
+                    second += 1;
                 }
 
-                var member = JsonConvert.DeserializeObject<MemberAction>(result.Message).Member;
+                if (this.client.GetProcessState())
+                {
+                    console.WriteLine("處理逾時..");
+                    this.client.UnlockProcess();
+                }
+                else
+                {
+                    console.WriteLine("處理完成..");
+                }
 
-                console.Write(JsonConvert.SerializeObject(member));
+                this.console.Read();
+                return false;
 
-                this.console.WriteLine("SendAction AddMemberAction");
 
-                console.Write("Execute  MemberAddProcess End\n");
-                console.ReadLine();
-                return true;
+                //var result  = this.client.GetAction(new AddMemberAction()
+                //{
+                //    MemberID = -1,
+                //    MemberName = memberName,
+                //    MemberPrice = memberPrice,
+                //    MemberDescript = memberDes
+                //}).Result;
+
+                //if (result == null)
+                //{
+                //    throw new Exception($"{this.GetType().Name} MemberAddProcess Empty");
+                //}
+
+                //var member = JsonConvert.DeserializeObject<MemberAction>(result.Message).Member;
+
+                //console.Write(JsonConvert.SerializeObject(member));
+
+
             }
             catch (Exception ex)
             {

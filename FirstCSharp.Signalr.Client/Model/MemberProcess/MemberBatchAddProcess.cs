@@ -29,7 +29,7 @@ namespace FirstCSharp.Signalr.Client.Model.MemberProcess
                 console.Clear();
                 console.Write("Execute  MemberBatchAddProcess\n");
 
-                var batchResult = this.hubClient.GetAction(new AddMembersAction()
+                this.hubClient.SendAction(new AddMembersAction()
                 {
                     Members = new MembersAddDto()
                     {
@@ -40,22 +40,34 @@ namespace FirstCSharp.Signalr.Client.Model.MemberProcess
                             f_descript = $"des{index}"
                         })
                     }
-                }).Result;
+                });
 
-                if (batchResult == null)
-                {
-                    throw new Exception($"{this.GetType().Name} MembersList Empty");
-                }
+                //var batchResult = this.hubClient.GetAction(new AddMembersAction()
+                //{
+                //    Members = new MembersAddDto()
+                //    {
+                //        Members = Enumerable.Range(1, 100).Select(index => new Member()
+                //        {
+                //            f_name = $"test{index}",
+                //            f_price = index * 100,
+                //            f_descript = $"des{index}"
+                //        })
+                //    }
+                //}).Result;
 
-                var memberAction = JsonConvert.DeserializeObject<MemberAction>(batchResult.Message);
+                //if (batchResult == null)
+                //{
+                //    throw new Exception($"{this.GetType().Name} MembersList Empty");
+                //}
 
-                foreach (Member member in memberAction.Members)
-                {
-                    console.WriteLine($"{JsonConvert.SerializeObject(member)}\n");
-                }
+                //var memberAction = JsonConvert.DeserializeObject<MemberAction>(batchResult.Message);
 
-                console.Write("Execute  MemberBatchAddProcess End\n");
-                console.ReadLine();
+                //foreach (Member member in memberAction.Members)
+                //{
+                //    console.WriteLine($"{JsonConvert.SerializeObject(member)}\n");
+                //}
+
+                console.Read();
                 return true;
             }
             catch (Exception ex)

@@ -1,4 +1,6 @@
-﻿namespace FirstCSharp.Domain.Model.ConsoleWrapper
+﻿using System.Collections.Generic;
+
+namespace FirstCSharp.Domain.Model.ConsoleWrapper
 {
     public interface IConsoleWrapper
     {

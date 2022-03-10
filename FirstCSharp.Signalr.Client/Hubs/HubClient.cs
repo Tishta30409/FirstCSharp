@@ -7,6 +7,7 @@ namespace FirstCSharp.Signalr.Client.Hubs
     using Microsoft.AspNet.SignalR.Client;
     using FirstCSharp.Domain.KeepAliveConn;
     using FirstCSharp.Signalr.Client.Model;
+    using System.Threading;
 
     public class HubClient : IHubClient
     {
@@ -15,14 +16,22 @@ namespace FirstCSharp.Signalr.Client.Hubs
         /// </summary>
         private IIndex<string, IActionHandler> handlerSets;
 
+        private bool IsProcessing;
+
+        private int ConnectTag = 0;
+
         public HubClient(string url, string hubName, IIndex<string, IActionHandler> handlerSets)
         {
             Url = url;
             HubName = hubName;
             this.handlerSets = handlerSets;
+            // 處理中
+            this.IsProcessing = false;
+            // 當前連線號碼
+            this.ConnectTag = -1;
         }
 
-        public override void BroadCastAction(string str)
+        public override async void BroadCastAction(string str)
         {
             try
             {
@@ -30,6 +39,15 @@ namespace FirstCSharp.Signalr.Client.Hubs
 
                 if (this.handlerSets.TryGetValue(actionModule.Action.ToLower(), out var handler))
                 {
+                    //測試 3秒Delay
+                    var second = 0;
+                    while (!SpinWait.SpinUntil(() => false, 1000) && second < 3)
+                    {
+                        second += 1;
+                    }
+
+                    this.UnlockProcess();
+
                     handler.Execute(actionModule);
                 }
             }
@@ -40,7 +58,6 @@ namespace FirstCSharp.Signalr.Client.Hubs
 
         public override async Task<ActionModule> GetAction<T>(T act)
         {
-
             var sendAction = new ActionModule()
             {
                 Action = act.Action(),
@@ -75,12 +92,18 @@ namespace FirstCSharp.Signalr.Client.Hubs
                 Message = act.ToString()
             };
 
-            if (this.State != ConnectionState.Connected)
+            //如果未連線 或是處理中就返回
+            if (this.State != ConnectionState.Connected || IsProcessing)
             {
                 return;
             }
 
+            this.IsProcessing = true; 
+
             this.HubProxy?.Invoke<string>("SendAction", sendAction.ToString());
+
+            //每次呼叫 超過時間就
+            //測試 3秒Delay
         }
 
         public override async Task StartAsync()
@@ -93,6 +116,22 @@ namespace FirstCSharp.Signalr.Client.Hubs
             await this.HubConnection.Start().ContinueWith(task =>
             {
             });
+        }
+
+        public int GetNextPackageNum()
+        {
+            this.ConnectTag += 1;
+            return this.ConnectTag;
+        }
+
+        public override bool GetProcessState()
+        {
+            return this.IsProcessing;
+        }
+
+        public override void UnlockProcess()
+        {
+            this.IsProcessing = false; 
         }
     }
 }

@@ -55,24 +55,29 @@ namespace FirstCSharp.Signalr.Client.Model.MemberProcess
                     this.console.Write("移除ID:");
                 }
 
-                var delResult = this.hubClient.GetAction(new DeleteMemberAction()
+                this.hubClient.SendAction(new DeleteMemberAction()
                 {
                     MemberID = memberID,
-                }).Result;
+                });
+                
+
+                //var delResult = this.hubClient.GetAction(new DeleteMemberAction()
+                //{
+                //    MemberID = memberID,
+                //}).Result;
 
 
-                if(delResult == null)
-                {
-                    throw new Exception($"{this.GetType().Name} delResult Empty");
-                }
+                //if(delResult == null)
+                //{
+                //    throw new Exception($"{this.GetType().Name} delResult Empty");
+                //}
 
-                var member = JsonConvert.DeserializeObject<MemberAction>(delResult.Message).Member;
+                //var member = JsonConvert.DeserializeObject<MemberAction>(delResult.Message).Member;
 
 
-                console.Write($"執行完成:: data::{JsonConvert.SerializeObject(member)}");
+                //console.Write($"執行完成:: data::{JsonConvert.SerializeObject(member)}");
 
-                console.Write("Execute  MemberDeleteProcess End\n");
-                console.ReadLine();
+                console.Read();
                 return true;
             }
             catch (Exception ex)

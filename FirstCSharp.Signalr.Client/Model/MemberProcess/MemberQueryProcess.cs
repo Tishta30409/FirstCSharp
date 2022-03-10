@@ -33,22 +33,24 @@ namespace FirstCSharp.Signalr.Client.Model.MemberProcess
                 console.Write("Execute  MemberQueryProcess\n");
 
                 console.Write("查詢結果為::\n");
-                var queryResult = this.hubClient.GetAction(new QueryMembersAction() { }).Result;
 
-                if(queryResult == null)
-                {
-                    throw new Exception($"{this.GetType()} queryResult is Empty");
-                }
+                this.hubClient.SendAction(new QueryMembersAction() { });
 
-                var members = JsonConvert.DeserializeObject<MemberAction>(queryResult.Message).Members;
+                //var queryResult = this.hubClient.GetAction(new QueryMembersAction() { }).Result;
 
-                foreach (var member in members)
-                {
-                    console.Write($"{JsonConvert.SerializeObject(member)}\n");
-                }
+                //if(queryResult == null)
+                //{
+                //    throw new Exception($"{this.GetType()} queryResult is Empty");
+                //}
 
-                console.Write("Execute  MemberQueryProcess End\n");
-                console.ReadLine();
+                //var members = JsonConvert.DeserializeObject<MemberAction>(queryResult.Message).Members;
+
+                //foreach (var member in members)
+                //{
+                //    console.Write($"{JsonConvert.SerializeObject(member)}\n");
+                //}
+
+                console.Read();
                 return true;
             }
             catch (Exception ex)

@@ -9,5 +9,6 @@ namespace FirstCSharp.Signalr.Server.Action
 
         public int MemberID { get; set; }
 
+
     }
 }
