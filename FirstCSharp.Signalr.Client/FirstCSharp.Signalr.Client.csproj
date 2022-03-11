@@ -99,7 +99,7 @@
     <Compile Include="ActionHandler\MemberActionHandler.cs" />
     <Compile Include="Applibs\AutofacConfig.cs" />
     <Compile Include="Applibs\ConfigHelper.cs" />
-    <Compile Include="Hubs\IHubClient.cs" />
+    <Compile Include="Signalr\IHubClient.cs" />
     <Compile Include="Model\IActionHandler.cs" />
     <Compile Include="Model\MemberProcess\MemberAddProcess.cs" />
     <Compile Include="Model\MemberProcess\MemberBatchAddProcess.cs" />
@@ -108,7 +108,7 @@
     <Compile Include="Model\MemberProcess\MemberUpdateProcess.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Hubs\HubClient.cs" />
+    <Compile Include="Signalr\HubClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

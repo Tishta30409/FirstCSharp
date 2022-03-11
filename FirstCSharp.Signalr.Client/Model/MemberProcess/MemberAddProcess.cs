@@ -11,13 +11,13 @@ namespace FirstCSharp.Signalr.Client.Model.MemberProcess
 {
     public class MemberAddProcess : IMemberProcess
     {
-        private IHubClient client;
+        private IHubClient hubClient;
 
         private IConsoleWrapper console;
 
-        public MemberAddProcess(IHubClient client, IConsoleWrapper console)
+        public MemberAddProcess(IHubClient hubClient, IConsoleWrapper console)
         {
-            this.client = client;
+            this.hubClient = hubClient;
             this.console = console;
         }
 
@@ -57,7 +57,7 @@ namespace FirstCSharp.Signalr.Client.Model.MemberProcess
                 console.WriteLine($"{memberName} {memberPrice} {memberDes}");
 
 
-                this.client.SendAction(new AddMemberAction()
+                this.hubClient.SendAction(new AddMemberAction()
                 {
                     MemberID = -1,
                     MemberName = memberName,
@@ -65,13 +65,11 @@ namespace FirstCSharp.Signalr.Client.Model.MemberProcess
                     MemberDescript = memberDes
                 });
 
-                System.Timers.Timer timer = new System.Timers.Timer();
-                timer.Enabled = true; 
 
                 var second = 0;
-                while (!SpinWait.SpinUntil(() => false, 1000) && this.client.GetProcessState() && second <5)
+                while (!SpinWait.SpinUntil(() => false, 1000) && this.hubClient.GetProcessState() && second <5)
                 {
-                    if (!this.client.GetProcessState())
+                    if (!this.hubClient.GetProcessState())
                     {
                         break;
                     }
@@ -79,10 +77,10 @@ namespace FirstCSharp.Signalr.Client.Model.MemberProcess
                     second += 1;
                 }
 
-                if (this.client.GetProcessState())
+                if (this.hubClient.GetProcessState())
                 {
                     console.WriteLine("處理逾時..");
-                    this.client.UnlockProcess();
+                    this.hubClient.UnlockProcess();
                 }
                 else
                 {

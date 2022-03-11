@@ -33,6 +33,7 @@ namespace FirstCSharp.Signalr.Server
 
         static void Main(string[] args)
         {
+            //
             using (WebApp.Start(ConfigHelper.SignalrUrl))
             {
                 //// 監聽APP關閉事件

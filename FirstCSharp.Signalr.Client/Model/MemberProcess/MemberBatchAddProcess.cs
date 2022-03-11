@@ -7,6 +7,7 @@ using FirstCSharp.Signalr.Server.Action;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
+using System.Threading;
 
 namespace FirstCSharp.Signalr.Client.Model.MemberProcess
 {
@@ -41,6 +42,29 @@ namespace FirstCSharp.Signalr.Client.Model.MemberProcess
                         })
                     }
                 });
+
+                var second = 0;
+                while (!SpinWait.SpinUntil(() => false, 1000) && this.hubClient.GetProcessState() && second < 5)
+                {
+                    if (!this.hubClient.GetProcessState())
+                    {
+                        break;
+                    }
+                    console.WriteLine("等待執行結果...");
+                    second += 1;
+                }
+
+                if (this.hubClient.GetProcessState())
+                {
+                    console.WriteLine("處理逾時..");
+                    this.hubClient.UnlockProcess();
+                }
+                else
+                {
+                    console.WriteLine("處理完成..");
+                }
+
+                this.console.Read();
 
                 //var batchResult = this.hubClient.GetAction(new AddMembersAction()
                 //{

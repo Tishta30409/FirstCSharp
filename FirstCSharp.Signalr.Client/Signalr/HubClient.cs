@@ -39,7 +39,7 @@ namespace FirstCSharp.Signalr.Client.Hubs
 
                 if (this.handlerSets.TryGetValue(actionModule.Action.ToLower(), out var handler))
                 {
-                    //測試 3秒Delay
+                  //  測試 3秒Delay
                     var second = 0;
                     while (!SpinWait.SpinUntil(() => false, 1000) && second < 3)
                     {

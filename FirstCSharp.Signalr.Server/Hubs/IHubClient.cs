@@ -2,7 +2,7 @@
 {
     using FirstCSharp.Domain.KeepAliveConn;
 
-    public interface IHubClient
+    public interface IHubClient 
     {
         /// <summary>
         /// 廣撥用

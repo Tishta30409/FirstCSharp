@@ -24,7 +24,7 @@ namespace FirstCSharp.Signalr.Client.ActionHandler
         {
             try
             {
-                
+                //  資料回傳較慢時 Server的
                 var action = JsonConvert.DeserializeObject<MemberAction>(actionModule.Message);
 
                 if (action.Member != null)

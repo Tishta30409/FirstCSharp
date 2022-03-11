@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FirstCSharp.Signalr.Client.Model.MemberProcess
@@ -59,7 +60,29 @@ namespace FirstCSharp.Signalr.Client.Model.MemberProcess
                 {
                     MemberID = memberID,
                 });
-                
+
+
+                var second = 0;
+                while (!SpinWait.SpinUntil(() => false, 1000) && this.hubClient.GetProcessState() && second < 5)
+                {
+                    if (!this.hubClient.GetProcessState())
+                    {
+                        break;
+                    }
+                    console.WriteLine("等待執行結果...");
+                    second += 1;
+                }
+
+                if (this.hubClient.GetProcessState())
+                {
+                    console.WriteLine("處理逾時..");
+                    this.hubClient.UnlockProcess();
+                }
+                else
+                {
+                    console.WriteLine("處理完成..");
+                }
+
 
                 //var delResult = this.hubClient.GetAction(new DeleteMemberAction()
                 //{

@@ -33,6 +33,7 @@ namespace FirstCSharp.Signalr.Server.Hubs
             {
                 this.logger.Trace($"{this.GetType().Name} BroadCastAction: {sendAction.ToString()}");
 
+                //廣播給所有連線的Client
                 this.hubContext.Clients.All.BroadCastAction(sendAction.ToString());
             }
             catch (Exception ex)
